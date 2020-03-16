@@ -6,6 +6,8 @@ CGull is a minimal tool for testing embedded C code on a PC using Python and the
 
 Clone this repository and run `pip install .` from the check-out directory.
 
+CGull requires that you have Python and GCC installed and available in your path. It should run on Linux, Windows, and Mac.
+
 ## Configuration
 
 Create a new directory to hold your CGull tests. Your CGull tests will be separate from your embedded project. In this directory, create the following structure:
