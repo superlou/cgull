@@ -16,7 +16,8 @@ def remove_old_executable(name):
 
 def build(target, settings, src, inc, flags=None):
     test_name = 'test_' + target
-    output_name = test_name
+    output_name = path.join('build', test_name)
+    os.makedirs('build', exist_ok=True)
     remove_old_executable(output_name)
 
     unity_path = path.join(path.dirname(path.abspath(__file__)), 'unity')
@@ -43,7 +44,7 @@ def build(target, settings, src, inc, flags=None):
 
 
 def run(target):
-    cmd = ['./test_' + target]
+    cmd = ['./build/test_' + target]
     subprocess.run(cmd)
 
 
