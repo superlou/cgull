@@ -1,0 +1,6 @@
+target_inc = "../embedded_project"
+target_src = "../embedded_project"
+gcc_flags = ["-m32"]
+
+[test.debouncer]
+depends = ["debouncer.c"]

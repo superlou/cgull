@@ -8,6 +8,8 @@ Clone this repository and run `pip install .` from the check-out directory.
 
 CGull requires that you have Python and GCC installed and available in your path. It should run on Linux, Windows, and Mac.
 
+If you are trying to compile with the `-m32` flag on Linux and receive `fatal error: sys/cdefs.h: No such file or directory`, you may need to install `libc6-dev-i386`.
+
 ## Configuration
 
 Create a new directory to hold your CGull tests. Your CGull tests will be separate from your embedded project. In this directory, create the following structure:
