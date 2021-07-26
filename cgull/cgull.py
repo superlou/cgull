@@ -44,8 +44,15 @@ def build(target, settings, src, inc, flags=None):
 
 
 def run(target):
-    cmd = ['./build/test_' + target]
-    subprocess.run(cmd)
+    executable = './build/test_' + target
+
+    if os.name == 'nt':
+        executable += '.exe'
+
+    try:
+        subprocess.run([executable])
+    except Exception as e:
+        print(f'Failed to run {executable}: {e}')
 
 
 def main():
