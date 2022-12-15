@@ -40,7 +40,17 @@ def build(target, settings, src, inc, flags=None):
     cmd += [path.join(src, filename) for filename in settings['depends']]
     cmd += ['-o', output_name]
 
-    subprocess.check_call(cmd)
+    try:
+        subprocess.check_call(cmd)
+    except subprocess.CalledProcessError as err:
+        print()
+        print(f'Failed to build {test_name}')
+        cmd_string = ' '.join(cmd)
+        print(f'Build command: {cmd_string}')
+        print()
+        return False
+
+    return True
 
 
 def run(target):
@@ -66,9 +76,15 @@ def main():
         if args.module and target not in args.module:
             continue
 
-        build(target, settings,
-              config['target_src'], config['target_inc'],
-              config.get('gcc_flags', None))
+        build_succeeded = build(
+            target, settings,
+            config['target_src'], config['target_inc'],
+            config.get('gcc_flags', None)
+        )
+
+        if not build_succeeded:
+            continue
+        
         run(target)
 
 
