@@ -14,7 +14,7 @@ def remove_old_executable(name):
         os.remove(name)
 
 
-def build(target, settings, src, inc, flags=None):
+def build(target, settings, src, inc, flags=None, gcc_cmd="gcc"):
     test_name = 'test_' + target
     output_name = path.join('build', test_name)
     os.makedirs('build', exist_ok=True)
@@ -22,7 +22,7 @@ def build(target, settings, src, inc, flags=None):
 
     unity_path = path.join(path.dirname(path.abspath(__file__)), 'unity')
 
-    cmd = ['gcc']
+    cmd = [gcc_cmd]
 
     if flags:
         cmd += flags
@@ -68,6 +68,7 @@ def run(target):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-m', '--module', nargs='+', help="Test module to run")
+    parser.add_argument('--gcc', nargs=1, help='Specify custom path to GCC executable')
     args = parser.parse_args()
 
     config = toml.load(open('config.toml'))
@@ -79,7 +80,8 @@ def main():
         build_succeeded = build(
             target, settings,
             config['target_src'], config['target_inc'],
-            config.get('gcc_flags', None)
+            config.get('gcc_flags', None),
+            "gcc" if args.gcc == None else args.gcc[0]
         )
 
         if not build_succeeded:
