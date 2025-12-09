@@ -55,7 +55,7 @@ To run only one test module, pass the `--module`/`-m` command line option with t
 cgull --module test_module_abc
 ```
 
-CGull will execute gcc from your path by default. To specify a custom gcc executable, pass the `--gcc`/`-g` command line option with the absolute path of the executable:
+CGull will execute gcc from your path by default. To specify a custom gcc executable, pass the `--gcc` command line option with the absolute path of the executable:
 
 ```
 cgull --gcc "/usr/bin/my_gcc"

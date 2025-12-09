@@ -2,7 +2,7 @@
 from distutils.core import setup
 
 setup(name='cgull',
-      version='0.1.3',
+      version='0.2.0',
       description='Embedded code testing utility',
       author='Louis Simons',
       author_email='lousimons@gmail.com',

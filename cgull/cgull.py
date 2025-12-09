@@ -68,7 +68,7 @@ def run(target):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-m', '--module', nargs='+', help="Test module to run")
-    parser.add_argument('-g', '--gcc', nargs=1, help='Specify custom path to GCC executable')
+    parser.add_argument('--gcc', nargs=1, help='Specify custom path to GCC executable')
     args = parser.parse_args()
 
     config = toml.load(open('config.toml'))
